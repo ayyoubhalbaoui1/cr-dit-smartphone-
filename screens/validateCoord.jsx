@@ -60,67 +60,42 @@ function SignUpScreen(props) {
   const [phone, onChangePhone] = React.useState("");
   const [email, onChangeEmail] = React.useState("");
   const [isSelected, setSelection] = React.useState(false);
-  async function signUp() {
-    // console.log(firstName);
-    // console.log(lastName);
-    // console.log(phone);
-    // console.log(firstName);
-    try {
-      if (db) {
-        if (firstName === "" || lastName === "" || phone === "" || email === "") {
-          Alert.alert("Please ", "Enter The Infos");
-        } else {
-          db.collection("clients").add({
-            firstName: firstName,
-            lastName: lastName,
-            phone: phone,
-            email: email,
-          });
-
-          try {
-            const data =  await AsyncStorage.setItem('validation', JSON.stringify({firstName, lastName, phone, email}))
-              
-          } catch (e) {
-            // saving error
-          }
-
-          props.navigation.navigate("Validation"); 
-        }
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
 
+  const [value, setValue] = useState("");
   const getData = async () => {
     try {
-      const value = await AsyncStorage.getItem('validation')
+      const data = await AsyncStorage.getItem('validation')
+      const data1 = JSON.parse(data);
+      setValue(data1)
       if(value){
         console.log('data is exists')
       }
       console.log(value)
       if(value !== null) {
-     console.log('====================================');
-     console.log("data is added");
-     console.log('====================================');
+        console.log('====================================');
+        console.log("data is added");
+        console.log('====================================');
       }
     } catch(e) {
       // error reading value
     }
   }
 
-  useEffect(async () => {
-    await getData()
+
+  console.log(value);
+
+  useEffect( () => {
+     getData()
   }, [])
   return (
     <ScrollView style={styles.container}>
       <View style={styles.row}>
         <Image style={styles.image} source={require("../assets/coordonnee.jpg")} />
         <View style={styles.topText}>
-          <Text style={styles.Heading}>MES COORDONNÉES</Text>
+          <Text style={styles.Heading}>VALIDATION DE MES COORDONNÉES</Text>
           <Text>
-            Renseigner les champs ci-dessous et passer à l'étape suivante !
+           vérifier, puis valider vos informations
           </Text>
         </View>
       </View>
@@ -128,28 +103,28 @@ function SignUpScreen(props) {
         style={styles.input}
         placeholder={"Nom ..."}
         onChangeText={onChangefirstName}
-        value={firstName}
+        value={value.firstName}
       />
       <TextInput
         style={styles.input}
         placeholder={"Prénom ..."}
         onChangeText={onChangelastName}
-        value={lastName}
+        value={value.lastName}
       />
       <TextInput
         style={styles.input}
         placeholder={"Tél ..."}
         onChangeText={onChangePhone}
-        value={phone}
+        value={value.phone}
       />
       <TextInput
         style={styles.input}
         placeholder={"Email..."}
         onChangeText={onChangeEmail}
-        value={email}
+        value={value.email}
       />
       <ButtonShared
-        text="SIMULER"
+        text="ALONS-Y!"
         onPress={() => {
           signUp();
         }}

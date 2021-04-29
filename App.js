@@ -1,7 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import SignUpScreen from "./screens/SignUpScreen";
-import CreditCalcul from "./screens/CreditCalcul";
+// import CreditCalcul from "./screens/CreditCalcul";
+import validateCoord from "./screens/validateCoord";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
@@ -21,11 +22,22 @@ function App() {
             },
           }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Calcul"
           component={CreditCalcul}
           options={{
             title: "CalCul",
+            headerTintColor: "white",
+            headerStyle: {
+              backgroundColor: "skyblue",
+            },
+          }}
+        /> */}
+        <Stack.Screen
+          name="Validation"
+          component={validateCoord}
+          options={{
+            title: "Validation",
             headerTintColor: "white",
             headerStyle: {
               backgroundColor: "skyblue",

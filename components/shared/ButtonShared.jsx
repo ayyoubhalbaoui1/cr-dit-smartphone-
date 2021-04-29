@@ -7,7 +7,8 @@ const ButtonShared = (props) => {
           style={styles.button}
           onPress={props.onPress}
           >
-          <Text style={{color:'white',fontSize:16}}>{props.text}</Text>
+          <Text style={{color:'white',fontSize:16,  fontWeight: "bold",
+}}>{props.text}</Text>
         </TouchableOpacity>
       </View>
     )
@@ -23,5 +24,6 @@ const styles = StyleSheet.create({
       marginTop: 45,
       borderRadius: 30,
       width:120,
+      marginLeft:100,
     }
 });
