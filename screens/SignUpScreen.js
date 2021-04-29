@@ -79,7 +79,7 @@ function SignUpScreen(props) {
 
           try {
             const data =  await AsyncStorage.setItem('validation', JSON.stringify({firstName, lastName, phone, email}))
-              
+            
           } catch (e) {
             // saving error
           }
