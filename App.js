@@ -5,12 +5,24 @@ import SignUpScreen from "./screens/SignUpScreen";
 import validateCoord from "./screens/validateCoord";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-const Stack = createStackNavigator();
-
+import { Provider } from 'react-native-paper'
+import { theme } from './core/theme'
+import Credit from './screens/Credit'
+import PageValidation from './screens/pageValidation'
+const Stack = createStackNavigator()
 function App() {
   return (
+
+    <Provider theme={theme}>
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        initialRouteName="SignUpScreen"
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+
+
         <Stack.Screen
           name="SignUpScreen"
           component={SignUpScreen}
@@ -21,18 +33,40 @@ function App() {
               backgroundColor: "white",
             },
           }}
-        />
-        {/* <Stack.Screen
-          name="Calcul"
-          component={CreditCalcul}
+        /> 
+           <Stack.Screen
+          name="Credit"
+          component={Credit}
           options={{
-            title: "CalCul",
-            headerTintColor: "white",
+            title: "Credit",
+            headerTintColor: "#ed3b45",
             headerStyle: {
-              backgroundColor: "skyblue",
+              backgroundColor: "white",
             },
           }}
-        /> */}
+        /> 
+           <Stack.Screen
+          name="PageValidation"
+          component={PageValidation}
+          options={{
+            title: "Credit",
+            headerTintColor: "#ed3b45",
+            headerStyle: {
+              backgroundColor: "white",
+            },
+          }}
+        /> 
+         {/* <Stack.Screen
+          name="Credit"
+          component={Credit}
+          options={{
+            title: "Credit",
+            headerTintColor: "white",
+            headerStyle: {
+              : "skyblue",
+            },
+          }}
+        />  */}
         <Stack.Screen
           name="Validation"
           component={validateCoord}
@@ -44,8 +78,14 @@ function App() {
             },
           }}
         />
+     
+                {/* <Stack.Screen name="Credit" component={Credit} /> */}
+                {/* <Stack.Screen name="PageValidation" component={PageValidation} /> */}
+
       </Stack.Navigator>
     </NavigationContainer>
+  </Provider>
+
   );
 }
 
